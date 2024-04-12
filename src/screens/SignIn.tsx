@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { Auth } from '../firebase/firebaseConfig'
 
 const SignIn: React.FC = () => {
+  const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle sign-in logic here
+    try {
+      await Auth.signInWithEmailAndPassword(email, password);
+      history.push('/'); // Redirect to home page after successful sign-in
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   return (

@@ -1,19 +1,20 @@
-import firebase from 'firebase/app';
-import 'firebase/firestore';
-import 'firebase/auth';
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
-const firebaseConfig = {
-  apiKey: 'YOUR_API_KEY',
-  authDomain: 'YOUR_AUTH_DOMAIN',
-  projectId: 'YOUR_PROJECT_ID',
-  storageBucket: 'YOUR_STORAGE_BUCKET',
-  messagingSenderId: 'YOUR_MESSAGING_SENDER_ID',
-  appId: 'YOUR_APP_ID',
+// Your web app's Firebase configuration
+export const config = {
+  apiKey: "AIzaSyCtW7GiC8YuAMDycTDJbliykHNJOxG8w30",
+  authDomain: "expensetracker-d6671.firebaseapp.com",
+  projectId: "expensetracker-d6671",
+  storageBucket: "expensetracker-d6671.appspot.com",
+  messagingSenderId: "500089976141",
+  appId: "1:500089976141:web:022de0bfdaa7ec6ed5f304",
 };
 
-// Initialize Firebase
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-}
+const firebaseApp = initializeApp(config);
 
-export default firebase;
+export const auth = getAuth(firebaseApp);
+const db = getFirestore(firebaseApp);
+
+export { db };
