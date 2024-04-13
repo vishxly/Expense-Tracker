@@ -73,73 +73,83 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ onAddExpense }) => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} className="mt-8">
-        <h2 className="text-xl font-semibold mb-4">Add Expense</h2>
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label htmlFor="title" className="block text-gray-700">
-              Title
-            </label>
-            <input
-              type="text"
-              id="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              className="mt-1 p-2 w-full border rounded-md"
-            />
-          </div>
-          <div>
-            <label htmlFor="category" className="block text-gray-700">
-              Category
-            </label>
-            <input
-              type="text"
-              id="category"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              className="mt-1 p-2 w-full border rounded-md"
-            />
-          </div>
-        </div>
-        <div className="mt-4">
-          <label htmlFor="amount" className="block text-gray-700">
-            Amount
-          </label>
-          <input
-            type="number"
-            id="amount"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            className="mt-1 p-2 w-full border rounded-md"
-          />
-        </div>
-        <button
-          type="submit"
-          className="mt-4 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+    <div className="flex bg-slate-200">
+      <div className="w-1/2 mr-4 border-x-2 border-black"> 
+        <form
+          onSubmit={handleSubmit}
+          className="mt-8 bg-slate-200 rounded-lg"
         >
-          Add Expense
-        </button>
-      </form>
+          <h2 className="text-xl font-semibold mb-4 ml-4 ">
+            Add Expense
+            <button
+              onClick={handleSignOut}
+              className="mt-4 ml-10 bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 "
+            >
+              Sign Out
+            </button>
+          </h2>
 
-      <button
-        onClick={handleSignOut}
-        className="mt-4 bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600"
-      >
-        Sign Out
-      </button>
-      {/* Display expenses */}
-      <div className="mt-8">
-        <h2 className="text-xl font-semibold mb-4">Expenses</h2>
-        <ul>
-          {expenses.map((expense) => (
-            <li key={expense.id}>
-              {expense.title} - {expense.category} - $
-              {expense.amount.toLocaleString()}
-            </li>
-          ))}
-        </ul>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="ml-4">
+              <label htmlFor="title" className="block text-gray-700">
+                Title
+              </label>
+              <input
+                type="text"
+                id="title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                className="mt-1 p-2 w-3/4 border rounded-md "
+              />
+            </div>
+            <div>
+              <label htmlFor="category" className="block text-gray-700">
+                Category
+              </label>
+              <input
+                type="text"
+                id="category"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                className="mt-1 p-2 w-3/4 border rounded-md"
+              />
+            </div>
+          </div>
+          <div className="mt-4 ml-4">
+            <label htmlFor="amount" className="block text-gray-700">
+              Amount
+            </label>
+            <input
+              type="number"
+              id="amount"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              className="mt-1 p-2 w-3/4 border rounded-md"
+            />
+          </div>
+          <button
+            type="submit"
+            className="mt-12 ml-4 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+          >
+            Add Expense
+          </button>
+        </form>
       </div>
+
+      <div className="w-1/2 ml-4 "> 
+        <div className="mt-8 bg-slate-200 rounded-lg">
+          <h2 className="text-xl font-bold mb-4">Expenses</h2>
+          <ul className="font-semibold">
+            {expenses.map((expense) => (
+              <li key={expense.id}>
+                {expense.title} - {expense.category} - $
+                {expense.amount.toLocaleString()}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      {/* Display expenses */}
     </div>
   );
 };

@@ -40,7 +40,7 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center h-screen">
+        <div className="flex flex-col items-center justify-center h-screen bg-slate-100">
             <p className="text-2xl font-bold mb-4">Login Page</p>
             <input
                 type="email"
@@ -56,11 +56,11 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
                 placeholder="Password"
                 className="w-64 p-2 mb-4 border rounded-md"
             />
-            <button onClick={() => signInWithEmailAndPasswordHandler()} disabled={authing} className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">
+            <button onClick={() => signInWithEmailAndPasswordHandler()} disabled={authing} className="bg-gray-600 text-white py-2 px-4 rounded-md hover:bg-blue-600">
                 Sign in with Email and Password
             </button>
             <br />
-            <button onClick={() => signInWithGoogle()} disabled={authing} className="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 mt-4">
+            <button onClick={() => signInWithGoogle()} disabled={authing} className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-red-600 mt-4">
                 Sign in with Google
             </button>
             <p className="mt-4">

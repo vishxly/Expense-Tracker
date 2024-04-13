@@ -30,7 +30,7 @@ const SignUp: React.FunctionComponent<ISignUpPageProps> = (props) => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center h-screen">
+        <div className="flex flex-col items-center justify-center h-screen bg-slate-100">
             <p className="text-2xl font-bold mb-4">Sign Up Page</p>
             <input
                 type="text"
