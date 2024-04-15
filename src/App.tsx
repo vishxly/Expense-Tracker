@@ -46,6 +46,7 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
           path="/expenseForm"
           element={<ExpenseForm onAddExpense={onAddExpense} />}
         />
+        <Route path="/home" element={<HomePage />} />
       </Routes>
     </BrowserRouter>
   );

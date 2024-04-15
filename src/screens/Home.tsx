@@ -15,20 +15,35 @@
 // };
 
 // export default Home;
-import React from 'react';
-import { getAuth, signOut } from 'firebase/auth';
+import React from "react";
+import { getAuth, signOut } from "firebase/auth";
+import { Link } from "react-router-dom";
 
-export interface IHomePageProps {}
+const HomePage: React.FunctionComponent = () => {
+  const auth = getAuth();
 
-const HomePage: React.FunctionComponent<IHomePageProps> = (props) => {
-    const auth = getAuth();
-
-    return (
-        <div>
-            <p>Home Page (Protected by Firebase!)</p>
-            <button onClick={() => signOut(auth)}>Sign out of Firebase</button>
-        </div>
-    );
+  return (
+    <div className="flex flex-col items-center justify-center h-screen">
+      <h1 className="text-4xl font-bold mb-8">Welcome to Expense Tracker</h1>
+      <p className="text-lg mb-6">
+        Manage your expenses easily with Expense Tracker.
+      </p>
+      <div className="flex space-x-4">
+        <button
+          className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+          onClick={() => signOut(auth)}
+        >
+          Sign out
+        </button>
+        <Link
+          to="/expenseForm"
+          className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600"
+        >
+          Add Expense
+        </Link>
+      </div>
+    </div>
+  );
 };
 
 export default HomePage;

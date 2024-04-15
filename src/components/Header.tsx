@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Header: React.FC = () => {
   return (
@@ -8,9 +9,9 @@ const Header: React.FC = () => {
         <nav>
           <ul className="flex space-x-4">
             <li>
-              <a href="#" className="text-white hover:text-gray-200">
+              <Link to="/home" className="text-white hover:text-gray-200 font-semibold bg-slate-300 p-2 rounded-md">
                 Home
-              </a>
+              </Link>
             </li>
             {/* <li>
               <a href="#" className="text-white hover:text-gray-200">
