@@ -7,36 +7,13 @@ import { config } from "./firebase/firebaseConfig";
 import AuthRoute from "./firebase/AuthRoute";
 import Header from "./components/Header";
 import ExpenseForm from "./components/ExpenseForm";
-import {
-  Timestamp,
-  addDoc,
-  collection,
-  getFirestore,
-} from "firebase/firestore";
-import Sidebar from "./screens/Sidebar"; // Import the Sidebar component
+import Sidebar from "./screens/Sidebar";
 
 initializeApp(config);
 
 export interface IApplicationProps {}
 
 const Application: React.FunctionComponent<IApplicationProps> = () => {
-  const db = getFirestore();
-
-  const onAddExpense = async (expense: { id: string }) => {
-    try {
-      const docRef = await addDoc(collection(db, "expenses"), {
-        ...expense,
-        createdAt: Timestamp.now(),
-      });
-
-      expense.id = docRef.id;
-
-      console.log("Expense added successfully with ID:", expense.id);
-    } catch (error) {
-      console.error("Error adding expense: ", error);
-    }
-  };
-
   return (
     <div className="flex">
       <Sidebar />
@@ -55,10 +32,7 @@ const Application: React.FunctionComponent<IApplicationProps> = () => {
             />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignUp />} />
-            <Route
-              path="/expenseForm"
-              element={<ExpenseForm onAddExpense={onAddExpense} />}
-            />
+            <Route path="/expenseForm" element={<ExpenseForm />} />
             <Route path="/home" element={<HomePage />} />
           </Routes>
         </BrowserRouter>

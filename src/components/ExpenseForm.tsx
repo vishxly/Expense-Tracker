@@ -12,11 +12,7 @@ import { db, auth } from "../firebase/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 import { v4 as uuidv4 } from "uuid";
 
-interface ExpenseFormProps {
-  onAddExpense: (expense: Expense) => void;
-}
-
-const ExpenseForm: React.FC<ExpenseFormProps> = ({ onAddExpense }) => {
+const ExpenseForm: React.FC = () => {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [amount, setAmount] = useState("");
@@ -46,7 +42,7 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ onAddExpense }) => {
       } catch (error) {
         console.error("Error fetching expenses:", error);
       } finally {
-        setLoading(false);
+        setLoading(false); 
       }
     };
 
@@ -58,7 +54,7 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ onAddExpense }) => {
       }
     });
 
-    return () => unsubscribe();
+    return () => unsubscribe(); 
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -96,7 +92,6 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ onAddExpense }) => {
       if (existingExpenseIndex === -1) {
         // Add the new expense to the expenses array only if it's not already present
         setExpenses([...expenses, newExpense]);
-        onAddExpense(newExpense);
 
         setTitle("");
         setCategory("");
@@ -187,7 +182,7 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ onAddExpense }) => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
             {expenses.map((expense) => (
               <div
-                key={`${expense.id}-${uuidv4()}`} // Combine id with a unique random string
+                key={expense.id} // Using expense ID as the key
                 className="bg-white shadow-md p-4 rounded-lg"
               >
                 <h3 className="font-semibold">{expense.title}</h3>
