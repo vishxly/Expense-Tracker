@@ -1,7 +1,9 @@
-import firebase from './firebaseConfig';
-import { Expense } from './types'; // Assuming you have a types file defining the Expense type
+import { config } from '../firebase/firebaseConfig';
+import { Expense } from '../components/types'; 
+import 'firebase/firestore'
 
-const db = firebase.firestore();
+const db = config.firestore;
+
 
 const collectionName = 'expenses';
 
@@ -18,7 +20,8 @@ export const getExpenses = async (): Promise<Expense[]> => {
   try {
     const snapshot = await db.collection(collectionName).get();
     const expenses: Expense[] = [];
-    snapshot.forEach((doc) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    snapshot.forEach((doc: { data: () => any; id: any; }) => {
       const data = doc.data();
       expenses.push({ id: doc.id, ...data } as Expense);
     });

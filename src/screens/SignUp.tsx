@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 
 export interface ISignUpPageProps {}
 
-const SignUp: React.FunctionComponent<ISignUpPageProps> = (props) => {
+const SignUp: React.FunctionComponent<ISignUpPageProps> = () => {
     const auth = getAuth();
     const navigate = useNavigate();
     const [authing, setAuthing] = useState(false);

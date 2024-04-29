@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./screens/Home";
 import LoginPage from "./screens/Login";
@@ -8,47 +7,63 @@ import { config } from "./firebase/firebaseConfig";
 import AuthRoute from "./firebase/AuthRoute";
 import Header from "./components/Header";
 import ExpenseForm from "./components/ExpenseForm";
-import { addDoc, collection, getFirestore } from 'firebase/firestore';
+import {
+  Timestamp,
+  addDoc,
+  collection,
+  getFirestore,
+} from "firebase/firestore";
+import Sidebar from "./screens/Sidebar"; // Import the Sidebar component
 
 initializeApp(config);
 
 export interface IApplicationProps {}
 
-const Application: React.FunctionComponent<IApplicationProps> = (props) => {
-  // Initialize Firestore
+const Application: React.FunctionComponent<IApplicationProps> = () => {
   const db = getFirestore();
 
-  // Function to add an expense to Firestore
-  const onAddExpense = async (expense) => {
+  const onAddExpense = async (expense: { id: string }) => {
     try {
-      await addDoc(collection(db, 'expenses'), expense);
-      console.log('Expense added successfully');
+      const docRef = await addDoc(collection(db, "expenses"), {
+        ...expense,
+        createdAt: Timestamp.now(),
+      });
+
+      expense.id = docRef.id;
+
+      console.log("Expense added successfully with ID:", expense.id);
     } catch (error) {
-      console.error('Error adding expense: ', error);
+      console.error("Error adding expense: ", error);
     }
   };
 
   return (
-    <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <AuthRoute>
-              <HomePage />
-            </AuthRoute>
-          }
-        />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route
-          path="/expenseForm"
-          element={<ExpenseForm onAddExpense={onAddExpense} />}
-        />
-        <Route path="/home" element={<HomePage />} />
-      </Routes>
-    </BrowserRouter>
+    <div className="flex">
+      <Sidebar />
+
+      <div className="flex flex-col w-full">
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <AuthRoute>
+                  <HomePage />
+                </AuthRoute>
+              }
+            />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route
+              path="/expenseForm"
+              element={<ExpenseForm onAddExpense={onAddExpense} />}
+            />
+            <Route path="/home" element={<HomePage />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </div>
   );
 };
 

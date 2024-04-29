@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 
 export interface ILoginPageProps {}
 
-const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
+const LoginPage: React.FunctionComponent<ILoginPageProps> = () => {
     const auth = getAuth();
     const navigate = useNavigate();
     const [authing, setAuthing] = useState(false);
