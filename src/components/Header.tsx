@@ -3,22 +3,23 @@ import { Link } from "react-router-dom";
 
 const Header: React.FC = () => {
   return (
-    <header className="bg-gray-400 py-2">
+    <header className="bg-gradient-to-r from-indigo-200 via-red-200 to-yellow-100 py-4">
       <div className="container mx-auto flex justify-between items-center">
-        <h1 className="text-white text-6xl font-bold">Expense Tracker</h1>
+        <div className="flex items-center">
+          <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold">
+            Expense Tracker
+          </h1>
+        </div>
         <nav>
           <ul className="flex space-x-4">
             <li>
-              <Link to="/home" className="text-white hover:text-gray-200 font-semibold bg-slate-300 p-2 rounded-md">
+              <Link
+                to="/home"
+                className="text-white hover:text-gray-200 font-semibold bg-green-500 hover:bg-green-600 px-4 py-2 rounded-md transition duration-300"
+              >
                 Home
               </Link>
             </li>
-            {/* <li>
-              <a href="#" className="text-white hover:text-gray-200">
-                About
-              </a>
-            </li> */}
-            {/* Add more navigation links as needed */}
           </ul>
         </nav>
       </div>

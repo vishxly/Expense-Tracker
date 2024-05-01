@@ -42,7 +42,7 @@ const ExpenseForm: React.FC = () => {
       } catch (error) {
         console.error("Error fetching expenses:", error);
       } finally {
-        setLoading(false); 
+        setLoading(false);
       }
     };
 
@@ -54,7 +54,7 @@ const ExpenseForm: React.FC = () => {
       }
     });
 
-    return () => unsubscribe(); 
+    return () => unsubscribe();
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -108,12 +108,12 @@ const ExpenseForm: React.FC = () => {
   };
 
   return (
-    <div className="flex bg-slate-200 h-full overflow-hidden">
+    <div className="flex flex-col md:flex-row bg-gradient-to-tl from-gray-100 to-gray-300 h-full overflow-hidden">
       {/* Add Expense Form */}
-      <div className="w-1/2 mr-4">
+      <div className="md:w-1/2 mr-4 lg:h-screen md:h-screen ">
         <form
           onSubmit={handleSubmit}
-          className="mt-8 bg-white rounded-lg shadow-md p-4"
+          className="mt-8 bg-gradient-to-tl from-gray-100 to-gray-300 rounded-lg shadow-md p-4"
         >
           <h2 className="text-xl font-semibold mb-4">Add Expense</h2>
 
@@ -176,7 +176,7 @@ const ExpenseForm: React.FC = () => {
       </div>
 
       {/* Expense List */}
-      <div className="w-1/2 ml-4 overflow-y-auto ">
+      <div className="md:w-1/2 ml-4 overflow-y-auto ">
         <div className="mt-8 bg-slate-200 rounded-lg">
           <h2 className="text-xl font-semibold mb-4">Expenses</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
